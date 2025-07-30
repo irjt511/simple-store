@@ -46,14 +46,6 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
               className="w-full h-full object-cover"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.style.background = 'linear-gradient(to right, #2563eb, #1d4ed8)';
-                target.style.display = 'flex';
-                target.style.alignItems = 'center';
-                target.style.justifyContent = 'center';
-                target.style.color = 'white';
-                target.style.fontSize = '30px';
-                target.style.fontWeight = 'bold';
-                target.innerHTML = 'R';
                 target.src = '';
               }}
             />
@@ -61,7 +53,6 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
           <h1 className="text-4xl font-bold mb-4 text-gray-800">مرحباً بك في {CONTACT_INFO.companyName}</h1>
           <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
             نحن متخصصون في تقديم أفضل الخدمات الرقمية لمساعدتك في تحقيق أهدافك التجارية والإبداعية. 
-            من إنشاء المتاجر الإلكترونية إلى تطوير المواقع والتطبيقات، ومن التصميم الجرافيكي إلى الدورات التدريبية المتخصصة.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
@@ -99,11 +90,11 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
           <p className="text-lg text-gray-600">اكتشف تجارب عملائنا مع خدماتنا المتميزة</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {reviews.map((review: Review) => (
             <div 
               key={review.id} 
-              className="bg-white rounded-xl shadow-lg p-6 border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              className="bg-white rounded-xl shadow-lg p-6 border border-blue-100 hover:shadow-xl transition-all duration-300"
             >
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-xl mr-3">
@@ -127,11 +118,12 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
         </div>
       </div>
       
+      {/* عرض التصنيفات بشكل صفين (كل صف فيه خدمتين) */}
       <div className="grid grid-cols-2 gap-6">
         {categories.map((category: Category) => (
           <div 
             key={category.id} 
-            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-blue-100"
+            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer"
             onClick={() => viewCategoryProducts(category.id)}
           >
             <div className="relative">
@@ -139,18 +131,6 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
                 src={category.image} 
                 alt={category.name}
                 className="w-full h-48 object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                  target.style.display = 'flex';
-                  target.style.alignItems = 'center';
-                  target.style.justifyContent = 'center';
-                  target.style.color = 'white';
-                  target.style.fontSize = '18px';
-                  target.style.fontWeight = 'bold';
-                  target.innerHTML = category.name;
-                  target.src = '';
-                }}
               />
               <div className="absolute top-3 right-3 bg-white rounded-full w-12 h-12 flex items-center justify-center text-xl shadow-lg">
                 {category.icon}
@@ -159,7 +139,7 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
             <div className="p-6">
               <h3 className="text-lg font-bold mb-3 text-gray-800">{category.name}</h3>
               <p className="text-gray-600 mb-4 text-sm leading-relaxed">{category.description}</p>
-              <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-4 py-2 rounded-lg transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+              <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-lg">
                 استكشف الخدمات
               </button>
             </div>
@@ -169,4 +149,3 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
     </div>
   );
 }
-
