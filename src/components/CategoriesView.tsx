@@ -22,12 +22,12 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
       {/* التصنيفات الأفقية */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">تصنيفات الخدمات</h2>
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="grid grid-cols-2 md:flex md:flex-wrap md:justify-center gap-4">
           {categories.map((category: Category) => (
             <button
               key={category.id}
               onClick={() => viewCategoryProducts(category.id)}
-              className="bg-white hover:bg-blue-50 border-2 border-blue-200 hover:border-blue-400 rounded-xl px-6 py-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg flex items-center gap-3 min-w-[200px]"
+              className="bg-white hover:bg-blue-50 border-2 border-blue-200 hover:border-blue-400 rounded-xl px-6 py-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg flex items-center gap-3 md:min-w-[200px]"
             >
               <span className="text-2xl">{category.icon}</span>
               <span className="font-semibold text-gray-800">{category.name}</span>
