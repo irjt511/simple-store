@@ -65,7 +65,7 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-            <div className="text-center p-6 bg-blue-50 rounded-xl md:col-span-1 col-span-1 mx-auto max-w-sm md:max-w-none">
+            <div className="text-center p-6 bg-blue-50 rounded-xl">
               <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl text-white">⚡</span>
               </div>
@@ -73,22 +73,20 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
               <p className="text-gray-600">نلتزم بتسليم مشاريعك في الوقت المحدد بأعلى جودة</p>
             </div>
             
-            <div className="grid grid-cols-2 gap-4 md:contents">
-              <div className="text-center p-4 md:p-6 bg-blue-50 rounded-xl">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
-                  <span className="text-xl md:text-2xl text-white">🎯</span>
-                </div>
-                <h3 className="text-lg md:text-xl font-bold mb-2 text-gray-800">حلول مخصصة</h3>
-                <p className="text-sm md:text-base text-gray-600">نقدم حلول مصممة خصيصاً لتناسب احتياجاتك الفريدة</p>
+            <div className="text-center p-6 bg-blue-50 rounded-xl">
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl text-white">🎯</span>
               </div>
-              
-              <div className="text-center p-4 md:p-6 bg-blue-50 rounded-xl">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
-                  <span className="text-xl md:text-2xl text-white">🏆</span>
-                </div>
-                <h3 className="text-lg md:text-xl font-bold mb-2 text-gray-800">جودة عالية</h3>
-                <p className="text-sm md:text-base text-gray-600">نضمن لك أعلى معايير الجودة في جميع خدماتنا</p>
+              <h3 className="text-xl font-bold mb-2 text-gray-800">حلول مخصصة</h3>
+              <p className="text-gray-600">نقدم حلول مصممة خصيصاً لتناسب احتياجاتك الفريدة</p>
+            </div>
+            
+            <div className="text-center p-6 bg-blue-50 rounded-xl">
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl text-white">🏆</span>
               </div>
+              <h3 className="text-xl font-bold mb-2 text-gray-800">جودة عالية</h3>
+              <p className="text-gray-600">نضمن لك أعلى معايير الجودة في جميع خدماتنا</p>
             </div>
           </div>
         </div>
@@ -101,38 +99,7 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
           <p className="text-lg text-gray-600">اكتشف تجارب عملائنا مع خدماتنا المتميزة</p>
         </div>
         
-        {/* للجوال: شريط تمرير أفقي */}
-        <div className="md:hidden overflow-x-auto scrollbar-hide">
-          <div className="flex gap-4 pb-4" style={{ width: 'max-content' }}>
-            {reviews.map((review: Review) => (
-              <div 
-                key={review.id} 
-                className="bg-white rounded-xl shadow-lg p-6 border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex-shrink-0 w-80"
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-xl mr-3">
-                    {review.avatar}
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-gray-800">{review.name}</h4>
-                    <p className="text-sm text-blue-600">{review.service}</p>
-                  </div>
-                </div>
-                
-                <div className="flex mb-3">
-                  {renderStars(review.rating)}
-                </div>
-                
-                <p className="text-gray-600 leading-relaxed text-sm">
-                  "{review.comment}"
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* للكمبيوتر: عرض شبكي */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reviews.map((review: Review) => (
             <div 
               key={review.id} 
@@ -160,20 +127,18 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
         </div>
       </div>
       
-      {/* قسم التصنيفات المحسن - تخطيط 2×2 */}
-      <div className="grid grid-cols-2 gap-4 md:gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-6">
         {categories.map((category: Category) => (
           <div 
             key={category.id} 
-            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-blue-100 flex flex-col h-full"
+            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer border border-blue-100"
             onClick={() => viewCategoryProducts(category.id)}
           >
-            {/* قسم الصورة */}
-            <div className="relative h-32 sm:h-40 md:h-48 flex-shrink-0">
+            <div className="relative">
               <img 
                 src={category.image} 
                 alt={category.name}
-                className="w-full h-full object-cover"
+                className="w-full h-48 object-cover"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
@@ -181,24 +146,20 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
                   target.style.alignItems = 'center';
                   target.style.justifyContent = 'center';
                   target.style.color = 'white';
-                  target.style.fontSize = '16px';
+                  target.style.fontSize = '18px';
                   target.style.fontWeight = 'bold';
                   target.innerHTML = category.name;
                   target.src = '';
                 }}
               />
-              <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-white rounded-full w-8 h-8 md:w-12 md:h-12 flex items-center justify-center text-sm md:text-xl shadow-lg">
+              <div className="absolute top-3 right-3 bg-white rounded-full w-12 h-12 flex items-center justify-center text-xl shadow-lg">
                 {category.icon}
               </div>
             </div>
-            
-            {/* قسم المحتوى */}
-            <div className="p-3 md:p-6 flex flex-col flex-grow">
-              <h3 className="text-sm md:text-xl font-bold mb-2 md:mb-3 text-gray-800 text-center">{category.name}</h3>
-              <p className="text-xs md:text-sm text-gray-600 mb-3 md:mb-6 leading-relaxed text-center flex-grow min-h-[2rem] md:min-h-[3rem] flex items-center">
-                {category.description}
-              </p>
-              <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-2 py-2 md:px-4 md:py-3 rounded-lg transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 mt-auto text-xs md:text-sm">
+            <div className="p-6">
+              <h3 className="text-lg font-bold mb-3 text-gray-800">{category.name}</h3>
+              <p className="text-gray-600 mb-4 text-sm leading-relaxed">{category.description}</p>
+              <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-4 py-2 rounded-lg transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                 استكشف الخدمات
               </button>
             </div>

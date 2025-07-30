@@ -1,133 +1,96 @@
-import { Category } from '../data/categories';
-import { Review } from '../data/reviews';
-import { CONTACT_INFO } from '../data/config';
-import { useState } from 'react';
+import { Product } from '../data/products';
 
-interface CategoriesViewProps {
-  categories: Category[];
-  viewCategoryProducts: (categoryId: number) => void;
-  reviews: Review[];
+interface ProductDetailsViewProps {
+  product: Product;
+  addToCart: (product: Product) => void;
+  setCurrentView: (view: 'categories' | 'products' | 'product-details' | 'cart' | 'checkout') => void;
 }
 
-export function CategoriesView({ categories, viewCategoryProducts, reviews }: CategoriesViewProps) {
-
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <span key={i} className={`text-lg ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`}>
-        ⭐
-      </span>
-    ));
-  };
-
+export function ProductDetailsView({ product, addToCart, setCurrentView }: ProductDetailsViewProps) {
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-
-      {/* التصنيفات الأفقية */}
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">تصنيفات الخدمات</h2>
-      <div className="flex flex-wrap gap-4 mb-12">
-        {categories.map((category: Category) => (
-          <button
-            key={category.id}
-            onClick={() => viewCategoryProducts(category.id)}
-            className="bg-white hover:bg-blue-50 border-2 border-blue-200 hover:border-blue-400 rounded-xl px-6 py-4 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg flex items-center gap-3 md:min-w-[200px]"
-          >
-            {category.icon} {category.name}
-          </button>
-        ))}
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold text-gray-800">تفاصيل الخدمة</h1>
+        <button
+          onClick={() => setCurrentView('products')}
+          className="text-blue-600 hover:text-blue-700 font-semibold flex items-center gap-2 text-lg bg-white px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all"
+        >
+          ← العودة للخدمات
+        </button>
       </div>
 
-      {/* تعريف المتجر */}
-      <div className="bg-white rounded-2xl shadow-xl p-8 mb-12">
-        <div className="text-center">
-          <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg overflow-hidden bg-gradient-to-r from-blue-600 to-blue-800 text-white font-bold text-2xl">
-            <img
-              src="/images/logo.jpg"
-              alt="ريفو"
-              className="w-full h-full object-cover"
+      <div className="bg-white rounded-2xl shadow-xl overflow-hidden relative">
+        {product.isSpecialOffer && (
+          <div className="absolute top-6 right-6 bg-red-500 text-white px-4 py-2 rounded-full text-lg font-bold z-10 shadow-lg">
+            عرض حصري
+          </div>
+        )}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* صورة المنتج */}
+          <div className="p-8">
+            <img 
+              src={product.image} 
+              alt={product.name}
+              className="w-full h-96 object-cover rounded-xl shadow-lg"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
+                target.style.background = 'linear-gradient(135deg, #3b82f6 0%, #1e40af 100%)';
+                target.style.display = 'flex';
+                target.style.alignItems = 'center';
+                target.style.justifyContent = 'center';
+                target.style.color = 'white';
+                target.style.fontSize = '18px';
+                target.style.fontWeight = 'bold';
+                target.style.textAlign = 'center';
+                target.style.padding = '40px';
+                target.innerHTML = product.name;
+                target.src = '';
               }}
             />
-            <span className="absolute">R</span>
           </div>
-          <h1 className="text-4xl font-bold mb-4 text-gray-800">مرحباً بك في {CONTACT_INFO.companyName}</h1>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-            نحن متخصصون في تقديم أفضل الخدمات الرقمية لمساعدتك في تحقيق أهدافك التجارية والإبداعية.
-          </p>
-        </div>
-      </div>
 
-      {/* قسم التقييمات */}
-      <div className="mb-12">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-4 text-gray-800">آراء عملائنا</h2>
-          <p className="text-lg text-gray-600">اكتشف تجارب عملائنا مع خدماتنا المتميزة</p>
-        </div>
+          {/* تفاصيل المنتج */}
+          <div className="p-8">
+            <h2 className="text-3xl font-bold mb-4 text-gray-800">{product.name}</h2>
+            <p className="text-gray-600 mb-6 text-lg leading-relaxed">{product.description}</p>
+            
+            <div className="mb-6">
+              <span className="text-4xl font-bold text-blue-600">{product.price} ريال</span>
+            </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {reviews.map((review: Review) => (
-            <div
-              key={review.id}
-              className="bg-white rounded-xl shadow-lg p-6 border border-blue-100 hover:shadow-xl transition-all duration-300"
-            >
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-xl mr-3">
-                  {review.avatar}
-                </div>
-                <div>
-                  <h4 className="font-bold text-gray-800">{review.name}</h4>
-                  <p className="text-sm text-blue-600">{review.service}</p>
+            {product.deliveryTime && (
+              <div className="mb-6 p-4 bg-blue-50 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <span className="text-blue-600 text-xl">⏰</span>
+                  <span className="font-semibold text-gray-800">مدة التسليم:</span>
+                  <span className="text-blue-600 font-semibold">{product.deliveryTime}</span>
                 </div>
               </div>
-              <div className="flex mb-3">
-                {renderStars(review.rating)}
+            )}
+
+            {product.features && product.features.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-xl font-bold mb-4 text-gray-800">ما يشمله هذه الخدمة:</h3>
+                <ul className="space-y-3">
+                  {product.features.map((feature, index) => (
+                    <li key={index} className="flex items-center gap-3">
+                      <span className="text-green-500 text-lg">✓</span>
+                      <span className="text-gray-700">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <p className="text-gray-600 leading-relaxed text-sm">
-                "{review.comment}"
-              </p>
-            </div>
-          ))}
+            )}
+
+            <button
+              onClick={() => addToCart(product)}
+              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-4 rounded-xl transition-all duration-300 font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            >
+              أضف إلى السلة - {product.price} ريال
+            </button>
+          </div>
         </div>
       </div>
-
-      {/* قسم التصنيفات المحسن */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {categories.map((category: Category) => {
-          const [imageError, setImageError] = useState(false);
-
-          return (
-            <div
-              key={category.id}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer border border-blue-100 flex flex-col"
-              onClick={() => viewCategoryProducts(category.id)}
-            >
-              <div className="relative h-48">
-                {!imageError ? (
-                  <img
-                    src={category.image}
-                    alt={category.name}
-                    className="w-full h-full object-cover"
-                    onError={() => setImageError(true)}
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-r from-blue-600 to-blue-800 text-white font-bold">
-                    {category.name}
-                  </div>
-                )}
-              </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-xl font-bold mb-3 text-gray-800 text-center">{category.name}</h3>
-                <p className="text-gray-600 mb-6 text-sm text-center flex-grow">{category.description}</p>
-                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg transition-all font-semibold mt-auto">
-                  استكشف الخدمات
-                </button>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
     </div>
   );
 }
