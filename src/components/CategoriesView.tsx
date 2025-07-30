@@ -160,8 +160,8 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
         </div>
       </div>
       
-      {/* قسم التصنيفات المحسن */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* قسم التصنيفات المحسن - تخطيط 2×2 */}
+      <div className="grid grid-cols-2 gap-4 md:gap-6">
         {categories.map((category: Category) => (
           <div 
             key={category.id} 
@@ -169,7 +169,7 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
             onClick={() => viewCategoryProducts(category.id)}
           >
             {/* قسم الصورة */}
-            <div className="relative h-48 flex-shrink-0">
+            <div className="relative h-32 sm:h-40 md:h-48 flex-shrink-0">
               <img 
                 src={category.image} 
                 alt={category.name}
@@ -181,24 +181,24 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
                   target.style.alignItems = 'center';
                   target.style.justifyContent = 'center';
                   target.style.color = 'white';
-                  target.style.fontSize = '18px';
+                  target.style.fontSize = '16px';
                   target.style.fontWeight = 'bold';
                   target.innerHTML = category.name;
                   target.src = '';
                 }}
               />
-              <div className="absolute top-4 right-4 bg-white rounded-full w-12 h-12 flex items-center justify-center text-xl shadow-lg">
+              <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-white rounded-full w-8 h-8 md:w-12 md:h-12 flex items-center justify-center text-sm md:text-xl shadow-lg">
                 {category.icon}
               </div>
             </div>
             
             {/* قسم المحتوى */}
-            <div className="p-6 flex flex-col flex-grow">
-              <h3 className="text-xl font-bold mb-3 text-gray-800 text-center">{category.name}</h3>
-              <p className="text-gray-600 mb-6 text-sm leading-relaxed text-center flex-grow min-h-[3rem] flex items-center">
+            <div className="p-3 md:p-6 flex flex-col flex-grow">
+              <h3 className="text-sm md:text-xl font-bold mb-2 md:mb-3 text-gray-800 text-center">{category.name}</h3>
+              <p className="text-xs md:text-sm text-gray-600 mb-3 md:mb-6 leading-relaxed text-center flex-grow min-h-[2rem] md:min-h-[3rem] flex items-center">
                 {category.description}
               </p>
-              <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-4 py-3 rounded-lg transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 mt-auto">
+              <button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-2 py-2 md:px-4 md:py-3 rounded-lg transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 mt-auto text-xs md:text-sm">
                 استكشف الخدمات
               </button>
             </div>
