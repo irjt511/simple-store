@@ -101,7 +101,38 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
           <p className="text-lg text-gray-600">اكتشف تجارب عملائنا مع خدماتنا المتميزة</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* للجوال: شريط تمرير أفقي */}
+        <div className="md:hidden overflow-x-auto scrollbar-hide">
+          <div className="flex gap-4 pb-4" style={{ width: 'max-content' }}>
+            {reviews.map((review: Review) => (
+              <div 
+                key={review.id} 
+                className="bg-white rounded-xl shadow-lg p-6 border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex-shrink-0 w-80"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-xl mr-3">
+                    {review.avatar}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-800">{review.name}</h4>
+                    <p className="text-sm text-blue-600">{review.service}</p>
+                  </div>
+                </div>
+                
+                <div className="flex mb-3">
+                  {renderStars(review.rating)}
+                </div>
+                
+                <p className="text-gray-600 leading-relaxed text-sm">
+                  "{review.comment}"
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* للكمبيوتر: عرض شبكي */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {reviews.map((review: Review) => (
             <div 
               key={review.id} 
