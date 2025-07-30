@@ -65,7 +65,7 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-            <div className="text-center p-6 bg-blue-50 rounded-xl">
+            <div className="text-center p-6 bg-blue-50 rounded-xl md:col-span-1 col-span-1 mx-auto max-w-sm md:max-w-none">
               <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl text-white">⚡</span>
               </div>
@@ -73,20 +73,22 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
               <p className="text-gray-600">نلتزم بتسليم مشاريعك في الوقت المحدد بأعلى جودة</p>
             </div>
             
-            <div className="text-center p-6 bg-blue-50 rounded-xl">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl text-white">🎯</span>
+            <div className="grid grid-cols-2 gap-4 md:contents">
+              <div className="text-center p-4 md:p-6 bg-blue-50 rounded-xl">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                  <span className="text-xl md:text-2xl text-white">🎯</span>
+                </div>
+                <h3 className="text-lg md:text-xl font-bold mb-2 text-gray-800">حلول مخصصة</h3>
+                <p className="text-sm md:text-base text-gray-600">نقدم حلول مصممة خصيصاً لتناسب احتياجاتك الفريدة</p>
               </div>
-              <h3 className="text-xl font-bold mb-2 text-gray-800">حلول مخصصة</h3>
-              <p className="text-gray-600">نقدم حلول مصممة خصيصاً لتناسب احتياجاتك الفريدة</p>
-            </div>
-            
-            <div className="text-center p-6 bg-blue-50 rounded-xl">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl text-white">🏆</span>
+              
+              <div className="text-center p-4 md:p-6 bg-blue-50 rounded-xl">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 md:mb-4">
+                  <span className="text-xl md:text-2xl text-white">🏆</span>
+                </div>
+                <h3 className="text-lg md:text-xl font-bold mb-2 text-gray-800">جودة عالية</h3>
+                <p className="text-sm md:text-base text-gray-600">نضمن لك أعلى معايير الجودة في جميع خدماتنا</p>
               </div>
-              <h3 className="text-xl font-bold mb-2 text-gray-800">جودة عالية</h3>
-              <p className="text-gray-600">نضمن لك أعلى معايير الجودة في جميع خدماتنا</p>
             </div>
           </div>
         </div>
