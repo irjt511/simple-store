@@ -169,3 +169,4 @@ export function CategoriesView({ categories, viewCategoryProducts, reviews }: Ca
     </div>
   );
 }
+
