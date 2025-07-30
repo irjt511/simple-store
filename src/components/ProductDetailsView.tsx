@@ -159,4 +159,3 @@ export function ProductsView({ products, viewProductDetails, addToCart, setCurre
     </div>
   );
 }
-
