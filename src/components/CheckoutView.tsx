@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { CartItem, CONTACT_INFO } from '../data/config';
 
 interface CheckoutViewProps {
@@ -18,31 +17,6 @@ export function CheckoutView({
   sendToWhatsApp, 
   setCurrentView 
 }: CheckoutViewProps) {
-
-  // استخدام PayPal Button بعد تحميل السكربت
-  useEffect(() => {
-    if (window.paypal) {
-      window.paypal.Buttons({
-        createOrder: (data, actions) => {
-          return actions.order.create({
-            purchase_units: [{
-              amount: {
-                value: getTotalPrice().toString(),  // تأكد من تحويل المجموع إلى نص
-              },
-            }],
-          });
-        },
-        onApprove: (data, actions) => {
-          return actions.order.capture().then(function(details) {
-            alert('تم الدفع بنجاح من قبل ' + details.payer.name.given_name);
-            // بعد الدفع يمكن توجيه العميل إلى صفحة أخرى
-            setCurrentView('categories');
-          });
-        },
-      }).render('#paypal-button-container');  // مكان عرض زر PayPal
-    }
-  }, [cart, getTotalPrice, setCurrentView]);
-
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-8">
@@ -105,7 +79,6 @@ export function CheckoutView({
             </div>
           </div>
 
-          {/* زر WhatsApp */}
           <button
             onClick={sendToWhatsApp}
             disabled={!customerName.trim()}
@@ -114,10 +87,7 @@ export function CheckoutView({
             <span>📱</span>
             إرسال الطلب عبر الواتساب
           </button>
-
-          {/* زر PayPal */}
-          <div id="paypal-button-container" className="mt-8"></div>
-
+          
           <div className="mt-4 text-center">
             <p className="text-sm text-gray-600">
               سيتم التواصل معك عبر الواتساب على الرقم: +{CONTACT_INFO.whatsappNumber}
