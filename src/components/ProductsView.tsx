@@ -9,7 +9,14 @@ interface ProductsViewProps {
   onCartClick: () => void;
 }
 
-export function ProductsView({ products, viewProductDetails, addToCart, setCurrentView, cartItemsCount, onCartClick }: ProductsViewProps) {
+export function ProductsView({
+  products,
+  viewProductDetails,
+  addToCart,
+  setCurrentView,
+  cartItemsCount,
+  onCartClick,
+}: ProductsViewProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -25,9 +32,10 @@ export function ProductsView({ products, viewProductDetails, addToCart, setCurre
               </div>
               <span className="font-medium">العودة للتصنيفات</span>
             </button>
-            
+
             <h1 className="text-xl font-bold text-gray-800">المنتجات</h1>
-            
+
+            {/* زر السلة العلوي */}
             <button
               onClick={onCartClick}
               className="relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-lg transition-all duration-300 font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center gap-2"
@@ -45,14 +53,14 @@ export function ProductsView({ products, viewProductDetails, addToCart, setCurre
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-8">
-        {/* شبكة المنتجات مع ارتفاع ثابت */}
+        {/* شبكة المنتجات */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {products.map((product) => (
-            <div 
-              key={product.id} 
+            <div
+              key={product.id}
               className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden flex flex-col h-full group"
             >
-              {/* قسم الصورة - ارتفاع ثابت */}
+              {/* صورة المنتج */}
               <div className="relative h-48 flex-shrink-0 overflow-hidden">
                 {product.isSpecialOffer && (
                   <div className="absolute top-3 right-3 z-10">
@@ -61,8 +69,8 @@ export function ProductsView({ products, viewProductDetails, addToCart, setCurre
                     </div>
                   </div>
                 )}
-                <img 
-                  src={product.image} 
+                <img
+                  src={product.image}
                   alt={product.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 cursor-pointer"
                   onClick={() => viewProductDetails(product)}
@@ -84,11 +92,11 @@ export function ProductsView({ products, viewProductDetails, addToCart, setCurre
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
 
-              {/* قسم المحتوى - يتمدد ليملأ المساحة المتبقية */}
+              {/* محتوى المنتج */}
               <div className="p-4 flex flex-col flex-grow">
-                {/* العنوان - ارتفاع ثابت */}
+                {/* العنوان */}
                 <div className="h-12 mb-3">
-                  <h3 
+                  <h3
                     className="text-lg font-bold text-gray-900 line-clamp-2 leading-6 cursor-pointer hover:text-blue-600 transition-colors"
                     onClick={() => viewProductDetails(product)}
                   >
@@ -96,11 +104,9 @@ export function ProductsView({ products, viewProductDetails, addToCart, setCurre
                   </h3>
                 </div>
 
-                {/* الوصف - ارتفاع ثابت */}
+                {/* الوصف */}
                 <div className="h-12 mb-4">
-                  <p className="text-gray-600 text-sm line-clamp-2 leading-6">
-                    {product.description}
-                  </p>
+                  <p className="text-gray-600 text-sm line-clamp-2 leading-6">{product.description}</p>
                 </div>
 
                 {/* السعر ومدة التسليم */}
@@ -113,7 +119,7 @@ export function ProductsView({ products, viewProductDetails, addToCart, setCurre
                       <span className="text-sm text-gray-600">ريال</span>
                     </div>
                   </div>
-                  
+
                   {product.deliveryTime && (
                     <div className="flex items-center gap-1 text-xs text-green-600 bg-green-50 px-2 py-1 rounded-full w-fit">
                       <span>⚡</span>
@@ -122,7 +128,7 @@ export function ProductsView({ products, viewProductDetails, addToCart, setCurre
                   )}
                 </div>
 
-                {/* الميزات - قسم قابل للتمدد */}
+                {/* الميزات */}
                 <div className="flex-grow mb-4">
                   {product.features && product.features.length > 0 && (
                     <div>
@@ -144,7 +150,7 @@ export function ProductsView({ products, viewProductDetails, addToCart, setCurre
                   )}
                 </div>
 
-                {/* الأزرار - مثبتة في الأسفل */}
+                {/* زر عرض التفاصيل + زر الإضافة */}
                 <div className="space-y-2 mt-auto">
                   <button
                     onClick={() => viewProductDetails(product)}
@@ -152,7 +158,7 @@ export function ProductsView({ products, viewProductDetails, addToCart, setCurre
                   >
                     عرض التفاصيل
                   </button>
-                  
+
                   <button
                     onClick={() => addToCart(product)}
                     className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-4 py-2 rounded-lg transition-all duration-300 font-bold text-sm shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
@@ -165,7 +171,7 @@ export function ProductsView({ products, viewProductDetails, addToCart, setCurre
           ))}
         </div>
 
-        {/* رسالة في حالة عدم وجود منتجات */}
+        {/* لا توجد منتجات */}
         {products.length === 0 && (
           <div className="text-center py-16">
             <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
