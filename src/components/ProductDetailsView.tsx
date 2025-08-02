@@ -1,5 +1,4 @@
 import { Product } from '../data/products';
-import { createCheckoutSession } from '../api/createCheckoutSession'; // ← استيراد دالة Stripe
 
 interface ProductDetailsViewProps {
   product: Product;
@@ -8,19 +7,6 @@ interface ProductDetailsViewProps {
 }
 
 export function ProductDetailsView({ product, addToCart, setCurrentView }: ProductDetailsViewProps) {
-  const handleCheckout = async () => {
-    const url = await createCheckoutSession({
-      name: product.name,
-      price: product.price,
-    });
-
-    if (url) {
-      window.location.href = url;
-    } else {
-      alert('حدث خطأ أثناء تجهيز الدفع.');
-    }
-  };
-
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-8">
@@ -96,20 +82,11 @@ export function ProductDetailsView({ product, addToCart, setCurrentView }: Produ
               </div>
             )}
 
-            {/* زر الإضافة للسلة */}
             <button
               onClick={() => addToCart(product)}
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-4 rounded-xl transition-all duration-300 font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 mb-4"
+              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-4 rounded-xl transition-all duration-300 font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
               أضف إلى السلة - {product.price} ريال
-            </button>
-
-            {/* زر الدفع الآن */}
-            <button
-              onClick={handleCheckout}
-              className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-4 rounded-xl transition-all duration-300 font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            >
-              ادفع الآن - {product.price} ريال
             </button>
           </div>
         </div>
