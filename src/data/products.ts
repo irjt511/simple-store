@@ -18,7 +18,7 @@ export const products: Product[] = [
     price: 1,
     image: "/images/1.jpg",
     description: "ابدأ مشروعك التجاري بخطوة احترافية! ...",
-    categoryId: 1,
+    categoryId: 499,
     features: [
       "إعداد متجر سلة كامل",
       "تصميم الصفحات الأساسية",
