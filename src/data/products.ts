@@ -15,10 +15,10 @@ export const products: Product[] = [
   {
     id: 1,
     name: "إنشاء متجر إلكتروني عبر سلة",
-    price: 1,
+    price: 499,
     image: "/images/1.jpg",
     description: "ابدأ مشروعك التجاري بخطوة احترافية! ...",
-    categoryId: 499,
+    categoryId: 1,
     features: [
       "إعداد متجر سلة كامل",
       "تصميم الصفحات الأساسية",
