@@ -1,9 +1,9 @@
-// ===== تعريف المنتج =====
+// ===== المنتجات =====
 export type Product = {
   id: number;           
   name: string;         
   price: number;        
-  images: string[];     // <-- بدّلنا من image إلى images (مصفوفة صور)
+  image: string;        
   description: string;  
   categoryId: number;   
   features?: string[];  
@@ -11,13 +11,12 @@ export type Product = {
   isSpecialOffer?: boolean;
 };
 
-// ===== المنتجات =====
 export const products: Product[] = [
   {
     id: 1,
     name: "إنشاء متجر إلكتروني عبر سلة",
     price: 499,
-    images: ["/images/1.jpg", "/images/1-2.jpg"], // <-- أكثر من صورة
+    image: "/images/1.jpg",
     description: "ابدأ مشروعك التجاري بخطوة احترافية! ...",
     categoryId: 1,
     features: [
@@ -35,7 +34,7 @@ export const products: Product[] = [
     id: 2,
     name: "إعادة تصميم واجهة المتجر في منصة سلة",
     price: 139,
-    images: ["/images/2.jpg", "/images/2-2.jpg"],
+    image: "/images/2.jpg",
     description: "نُعيد تصميم واجهة متجرك الإلكتروني...",
     categoryId: 1,
     features: [
@@ -53,7 +52,7 @@ export const products: Product[] = [
     id: 3,
     name: "برمجة موقع الالكتروني ",
     price: 2000,
-    images: ["/images/3.jpg", "/images/3-2.jpg"],
+    image: "/images/3.jpg",
     description: "نقوم ببرمجة موقع إلكتروني مخصص بالكامل...",
     categoryId: 2,
     features: [
@@ -71,7 +70,7 @@ export const products: Product[] = [
     id: 4,
     name: "برمجة موقع تعريفي ",
     price: 2000,
-    images: ["/images/mog.jpg", "/images/mog-2.jpg", "/images/mog-3.jpg"], // <-- تقدر تحط أكثر
+    image: ["/images/mog1.jpg", "/images/mog2.jpg", "/images/mog3.jpg"],
     description: "برمجة موقع تعريفي لك بلكامل ",
     categoryId: 2,
     features: [
@@ -89,7 +88,7 @@ export const products: Product[] = [
     id: 5,
     name: "تصميم شعار",
     price: 29,
-    images: ["/images/4.jpg"],
+    image: "/images/4.jpg",
     description: "احصل على شعار احترافي ومميز يعكس هوية علامتك التجارية...",
     categoryId: 3,
     features: [
@@ -106,7 +105,7 @@ export const products: Product[] = [
     id: 6,
     name: "تصميم بانر",
     price: 29,
-    images: ["/images/5.jpg"],
+    image: "/images/5.jpg",
     description: "تصميم بانرات إعلانية جذابة ومؤثرة...",
     categoryId: 3,
     features: [
@@ -123,7 +122,7 @@ export const products: Product[] = [
     id: 7,
     name: "تصميم صور منتجات",
     price: 39,
-    images: ["/images/6.jpg"],
+    image: "/images/6.jpg",
     description: "تصميم صور منتجات احترافية تبرز جمال وجودة منتجاتك...",
     categoryId: 3,
     features: [
@@ -140,7 +139,7 @@ export const products: Product[] = [
     id: 8,
     name: "تصميم صور إعلانات",
     price: 59,
-    images: ["/images/7.jpg"],
+    image: "/images/7.jpg",
     description: "تصميم صور إعلانية مؤثرة وجذابة لحملاتك التسويقية...",
     categoryId: 3,
     features: [
@@ -157,7 +156,7 @@ export const products: Product[] = [
     id: 9,
     name: "تصميم هوية بصرية",
     price: 159,
-    images: ["/images/8.jpg"],
+    image: "/images/8.jpg",
     description: "تصميم هوية بصرية متكاملة لعلامتك التجارية...",
     categoryId: 3,
     features: [
@@ -175,7 +174,7 @@ export const products: Product[] = [
     id: 10,
     name: "تصميم مقاطع جرافيك (موشن جرافيك)",
     price: 259,
-    images: ["/images/9.jpg"],
+    image: "/images/9.jpg",
     description: "إنتاج مقاطع موشن جرافيك احترافية...",
     categoryId: 3,
     features: [
@@ -190,4 +189,5 @@ export const products: Product[] = [
     ],
     deliveryTime: "7-10 أيام عمل"
   },
+
 ];
