@@ -70,7 +70,7 @@ export const products: Product[] = [
     id: 4,
     name: "برمجة موقع تعريفي ",
     price: 2000,
-    image: ["/images/mog1.jpg", "/images/mog2.jpg", "/images/mog3.jpg"],
+    image: "/images/mog1.jpg",
     description: "برمجة موقع تعريفي لك بلكامل ",
     categoryId: 2,
     features: [
