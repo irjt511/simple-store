@@ -191,5 +191,3 @@ export const products: Product[] = [
     deliveryTime: "7-10 أيام عمل"
   },
 ];
-
-
