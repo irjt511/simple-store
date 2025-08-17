@@ -3,7 +3,8 @@ export type Product = {
   id: number;           
   name: string;         
   price: number;        
-  image: string;        
+  image?: string;        // صورة واحدة (للمنتجات العادية)
+  images?: string[];     // عدة صور (لمنتج مثل الموقع التعريفي)
   description: string;  
   categoryId: number;   
   features?: string[];  
@@ -70,8 +71,8 @@ export const products: Product[] = [
     id: 4,
     name: "برمجة موقع تعريفي ",
     price: 2000,
-    image: "/images/mog1.jpg",
-    description: "برمجة موقع تعريفي لك بلكامل ",
+    images: ["/images/mog1.jpg", "/images/mog2.jpg", "/images/mog3.jpg"], // 👈 مصفوفة صور
+    description: "برمجة موقع تعريفي لك بالكامل بشكل احترافي",
     categoryId: 2,
     features: [
       "برمجة مخصصة بالكامل",
@@ -79,7 +80,7 @@ export const products: Product[] = [
       "تصميم متجاوب لجميع الأجهزة",
       "سرعة تحميل ممتازة",
       "حضور رقمي فريد ومميز",
-      "دعم فني لمدة 10 ايام"
+      "دعم فني لمدة 10 أيام"
     ],
     deliveryTime: "2-3 يوم عمل"
   },
@@ -189,5 +190,4 @@ export const products: Product[] = [
     ],
     deliveryTime: "7-10 أيام عمل"
   },
-
 ];
