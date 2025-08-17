@@ -50,7 +50,7 @@ export const products: Product[] = [
   },
   {
     id: 3,
-    name: "برمجة موقع إلكتروني مخصص",
+    name: "برمجة موقع الالكتروني ",
     price: 2000,
     image: "/images/3.jpg",
     description: "نقوم ببرمجة موقع إلكتروني مخصص بالكامل...",
