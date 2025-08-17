@@ -1,9 +1,9 @@
-// ===== المنتجات =====
+// ===== تعريف المنتج =====
 export type Product = {
   id: number;           
   name: string;         
   price: number;        
-  image: string;        
+  images: string[];     // <-- بدّلنا من image إلى images (مصفوفة صور)
   description: string;  
   categoryId: number;   
   features?: string[];  
@@ -11,12 +11,13 @@ export type Product = {
   isSpecialOffer?: boolean;
 };
 
+// ===== المنتجات =====
 export const products: Product[] = [
   {
     id: 1,
     name: "إنشاء متجر إلكتروني عبر سلة",
     price: 499,
-    image: "/images/1.jpg",
+    images: ["/images/1.jpg", "/images/1-2.jpg"], // <-- أكثر من صورة
     description: "ابدأ مشروعك التجاري بخطوة احترافية! ...",
     categoryId: 1,
     features: [
@@ -34,7 +35,7 @@ export const products: Product[] = [
     id: 2,
     name: "إعادة تصميم واجهة المتجر في منصة سلة",
     price: 139,
-    image: "/images/2.jpg",
+    images: ["/images/2.jpg", "/images/2-2.jpg"],
     description: "نُعيد تصميم واجهة متجرك الإلكتروني...",
     categoryId: 1,
     features: [
@@ -52,7 +53,7 @@ export const products: Product[] = [
     id: 3,
     name: "برمجة موقع الالكتروني ",
     price: 2000,
-    image: "/images/3.jpg",
+    images: ["/images/3.jpg", "/images/3-2.jpg"],
     description: "نقوم ببرمجة موقع إلكتروني مخصص بالكامل...",
     categoryId: 2,
     features: [
@@ -67,10 +68,10 @@ export const products: Product[] = [
     deliveryTime: "10-15 يوم عمل"
   },
   {
-    id: 3,
+    id: 4,
     name: "برمجة موقع تعريفي ",
     price: 2000,
-    image: "/images/mog.jpg",
+    images: ["/images/mog.jpg", "/images/mog-2.jpg", "/images/mog-3.jpg"], // <-- تقدر تحط أكثر
     description: "برمجة موقع تعريفي لك بلكامل ",
     categoryId: 2,
     features: [
@@ -85,10 +86,10 @@ export const products: Product[] = [
   },
   // ===== منتجات التصميم =====
   {
-    id: 4,
+    id: 5,
     name: "تصميم شعار",
     price: 29,
-    image: "/images/4.jpg",
+    images: ["/images/4.jpg"],
     description: "احصل على شعار احترافي ومميز يعكس هوية علامتك التجارية...",
     categoryId: 3,
     features: [
@@ -102,10 +103,10 @@ export const products: Product[] = [
     deliveryTime: "1-2 يوم عمل"
   },
   {
-    id: 5,
+    id: 6,
     name: "تصميم بانر",
     price: 29,
-    image: "/images/5.jpg",
+    images: ["/images/5.jpg"],
     description: "تصميم بانرات إعلانية جذابة ومؤثرة...",
     categoryId: 3,
     features: [
@@ -119,10 +120,10 @@ export const products: Product[] = [
     deliveryTime: "1 يوم عمل"
   },
   {
-    id: 6,
+    id: 7,
     name: "تصميم صور منتجات",
     price: 39,
-    image: "/images/6.jpg",
+    images: ["/images/6.jpg"],
     description: "تصميم صور منتجات احترافية تبرز جمال وجودة منتجاتك...",
     categoryId: 3,
     features: [
@@ -136,10 +137,10 @@ export const products: Product[] = [
     deliveryTime: "1-2 يوم عمل"
   },
   {
-    id: 7,
+    id: 8,
     name: "تصميم صور إعلانات",
     price: 59,
-    image: "/images/7.jpg",
+    images: ["/images/7.jpg"],
     description: "تصميم صور إعلانية مؤثرة وجذابة لحملاتك التسويقية...",
     categoryId: 3,
     features: [
@@ -153,10 +154,10 @@ export const products: Product[] = [
     deliveryTime: "2-3 أيام عمل"
   },
   {
-    id: 8,
+    id: 9,
     name: "تصميم هوية بصرية",
     price: 159,
-    image: "/images/8.jpg",
+    images: ["/images/8.jpg"],
     description: "تصميم هوية بصرية متكاملة لعلامتك التجارية...",
     categoryId: 3,
     features: [
@@ -171,10 +172,10 @@ export const products: Product[] = [
     deliveryTime: "5-7 أيام عمل"
   },
   {
-    id: 9,
+    id: 10,
     name: "تصميم مقاطع جرافيك (موشن جرافيك)",
     price: 259,
-    image: "/images/9.jpg",
+    images: ["/images/9.jpg"],
     description: "إنتاج مقاطع موشن جرافيك احترافية...",
     categoryId: 3,
     features: [
@@ -189,5 +190,4 @@ export const products: Product[] = [
     ],
     deliveryTime: "7-10 أيام عمل"
   },
-
 ];
